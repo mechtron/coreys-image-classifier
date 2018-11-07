@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    ports:
+     - "8000:8000"
+    volumes:
+     - .:/repo
+    depends_on:
+      - db
+      - redis
+
+  redis:
+    image: "redis:alpine"
+
+  db:
+    image: mysql
+    ports:
+     - "3306:3306"
+    volumes:
+     - ./db-data:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: password
