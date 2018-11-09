@@ -3,7 +3,7 @@ By Corey Gale (mechtrondev@gmail.com)
 
 ## Docker environment usage
 
-    docker-compose up -d --build
+    make docker
 
 ### Create the API's database for the first time
 
@@ -13,4 +13,4 @@ By Corey Gale (mechtrondev@gmail.com)
 ### Migrate the API's database
 
     docker exec -it <api_container_id> /bin/sh
-    cd /api && python3 manage.py migrate
+    python3 manage.py migrate

@@ -16,6 +16,10 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from classifier.views import CreateClassification
+
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^classify-image/$', CreateClassification.as_view(), name='classify-image'),
 ]

@@ -16,5 +16,7 @@ COPY ./api /api
 
 EXPOSE 8000
 
+ENV PYTHONUNBUFFERED=1
+
 WORKDIR /api
-CMD python3 manage.py runserver
+CMD python3 manage.py runserver 0.0.0.0:8000
