@@ -2,6 +2,7 @@ version: '3'
 
 services:
   api:
+    container_name: classifier_api
     build: .
     restart: always
     ports:
@@ -13,9 +14,11 @@ services:
       - redis
 
   redis:
+    container_name: classifier_cache
     image: "redis:alpine"
 
   db:
+    container_name: classifier_db
     image: mysql
     ports:
      - "3306:3306"

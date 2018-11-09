@@ -7,13 +7,11 @@ By Corey Gale (mechtrondev@gmail.com)
 
 ### Create the API's database for the first time
 
-    docker exec -it <db_container_id> /bin/sh
-    mysql -ppassword -e 'CREATE DATABASE IF NOT EXISTS api;'
+    make db_create
 
 ### Migrate the API's database
 
-    docker exec -it <api_container_id> /bin/sh
-    python3 manage.py migrate
+    make db_migrate
 
 ## Example request
 
