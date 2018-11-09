@@ -20,15 +20,3 @@ class Classification(models.Model):
     processing_type = models.TextField(choices=TYPES)
     processing_time = models.DecimalField(max_digits=16, decimal_places=4)
     # owner = models.ForeignKey('user.User')
-
-    # def classify_image(self, image_url):
-    #     notification = TabbNotification()
-    #     notification.tabb = tabb
-    #     notification.debtor = debtor
-    #     notification.type = notification_type
-    #     notification.delivery_mechanism = debtor.notification_preference
-    #     notification.message = message
-    #     if notification.delivery_mechanism == 'email':
-    #         notification.subject_line = email_subject
-    #     notification.send_notification(debtor)
-    #     notification.save()
