@@ -19,4 +19,3 @@ class Classification(models.Model):
     confidence = models.DecimalField(max_digits=16, decimal_places=4)
     processing_type = models.TextField(choices=TYPES)
     processing_time = models.DecimalField(max_digits=16, decimal_places=4)
-    # owner = models.ForeignKey('user.User')

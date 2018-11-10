@@ -20,7 +20,7 @@ from django.conf.urls import (
 from django.contrib import admin
 
 from classifier.views import CreateClassification
-# from report.views import GetReport
+from report.views import CreateReport
 
 
 urlpatterns = [
@@ -32,5 +32,5 @@ urlpatterns = [
         CreateClassification.as_view(),
         name='classify-image',
     ),
-    # url(r'^report', GetReport.as_view(), name='report'),
+    url(r'^report', CreateReport.as_view(), name='report'),
 ]

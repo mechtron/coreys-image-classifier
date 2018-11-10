@@ -17,6 +17,25 @@ By Corey Gale (mechtrondev@gmail.com)
 
     make request
 
+### Reporting endpoint
+
+Note: only authorized usernames (`admin` and `corey`) can access this endpoint.
+
+    curl --request GET --header 'Authorization: Token 2cc009873ddf3c49ff0000fb6b77a87782a73b8f' http://localhost:8000/report
+
+Response (truncated response for a dataset of `n=20000` random classifications):
+
+    [
+        {
+            "image_url":"https://s3.amazonaws.com/gumgum-interviews/ml-engineer/162.jpg",
+            "classification_count":35,
+            "processing_time_avg":6.79950286,
+            "processing_time_max":9.7266,
+            "processing_time_min":3.0883
+        },
+        ...
+    ]
+
 ### User management
 
 ##### Create a new user
