@@ -36,6 +36,14 @@ Response (truncated response for a dataset of `n=20000` random classifications):
         ...
     ]
 
+### Secret endpoint
+
+Note: only authenticated users can access this endpoint.
+
+    curl --request GET --header 'Authorization: Token 2cc009873ddf3c49ff0000fb6b77a87782a73b8f' http://localhost:8000/secret
+
+Response: `Hi corey`
+
 ### User management
 
 ##### Create a new user

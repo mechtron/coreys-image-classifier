@@ -21,6 +21,7 @@ from django.contrib import admin
 
 from classifier.views import CreateClassification
 from report.views import CreateReport
+from secret.views import Secret
 
 
 urlpatterns = [
@@ -33,4 +34,5 @@ urlpatterns = [
         name='classify-image',
     ),
     url(r'^report', CreateReport.as_view(), name='report'),
+    url(r'^secret', Secret.as_view(), name='secret'),
 ]

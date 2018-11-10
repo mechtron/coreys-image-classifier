@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
 import random
 
-from django.shortcuts import render
 from rest_framework import status
 from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response

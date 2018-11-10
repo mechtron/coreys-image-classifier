@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'djoser',
     'classifier',
     'report',
+    'secrets',
 ]
 
 MIDDLEWARE = [
