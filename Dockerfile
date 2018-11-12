@@ -1,15 +1,12 @@
-FROM python:3.7-alpine3.7
+FROM ubuntu:16.04
 
-RUN apk --update add --no-cache redis mysql-client
+RUN apt-get update && \
+  apt-get install -y python3-pip libmysqlclient-dev mysql-client redis-tools && \
+  rm -rf /var/lib/apt/lists/*
 RUN pip3 install --upgrade pip
-
-RUN apk add --no-cache mariadb-client-libs
-RUN apk add --no-cache --virtual .build-deps mariadb-dev gcc musl-dev
 
 COPY requirements.txt /tmp/requirements.txt
 RUN pip3 install -r /tmp/requirements.txt
-
-RUN apk del .build-deps
 
 RUN mkdir /api
 COPY ./api /api
