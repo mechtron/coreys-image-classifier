@@ -68,7 +68,7 @@ def get_prediction_cached(image_url):
     current_cached_value = REDIS_CLIENT.get(image_url_hashed)
     if current_cached_value:
         print("Found a cached result for {}..".format(image_url))
-        return json.loads(current_cached_value.decode('utf-8'))
+        return (json.loads(current_cached_value.decode('utf-8')), True)
     else:
         print('New image URL detected, processing new image..')
         prediction = process_new_image(image_url)
@@ -77,13 +77,13 @@ def get_prediction_cached(image_url):
             json.dumps(prediction),
             ex=3600,
         )
-        return prediction
+        return (prediction, False)
 
 
 def classify_image(image_url):
     print("Classifying image from URL {}..".format(image_url))
     start_time = datetime.datetime.now()
-    prediction = get_prediction_cached(image_url)
+    prediction, was_cached = get_prediction_cached(image_url)
     end_time = datetime.datetime.now()
     processing_time_seconds = (end_time-start_time).total_seconds()
     print("Time to process {url}: {seconds}s".format(
@@ -94,4 +94,5 @@ def classify_image(image_url):
         'classification': prediction['prediction'],
         'confidence': prediction['confidence'],
         'processing_time': processing_time_seconds,
+        'cached': was_cached,
     }

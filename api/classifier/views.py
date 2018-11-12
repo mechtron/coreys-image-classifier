@@ -22,7 +22,7 @@ class CreateClassification(CreateAPIView):
                 result=classification['classification'],
                 confidence=classification['confidence'],
                 processing_time=classification['processing_time'],
-                processing_type='new',
+                processing_type='cached' if classification['cached'] else 'new',
             )
             response_data = {
                 'classification': classification['classification'],
