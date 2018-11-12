@@ -1,5 +1,5 @@
 # ml-engineer-project
-By Corey Gale (mechtrondev@gmail.com)
+By Corey Gale (coreygale@gmail.com / corey@gumgum.com)
 
 ## Create Docker environment
 
@@ -15,7 +15,29 @@ By Corey Gale (mechtrondev@gmail.com)
 
 ## Example request
 
-    make request
+    curl --request POST --header "Content-Type: application/json" --data '{"image_url":"https://s3.amazonaws.com/gumgum-interviews/ml-engineer/cat.jpg"}' http://localhost:8000/classify-image
+
+Or simply: `make request`
+
+Response:
+
+    {"processing_time":6.076243,"classification":"tabby","confidence":0.5540751218795776}
+
+#### Image test: apple
+
+    curl --request POST --header "Content-Type: application/json" --data '{"image_url":"https://i.imgur.com/UBNYRsZ.jpg"}' http://localhost:8000/classify-image
+
+Response:
+
+    {"processing_time":5.160117,"classification":"Granny_Smith","confidence":0.9807039499282837}
+
+#### Image test: yorkie
+
+    curl --request POST --header "Content-Type: application/json" --data '{"image_url":"https://i.imgur.com/y8BzuvG.jpg"}' http://localhost:8000/classify-image
+
+Response:
+
+    {"processing_time":5.143928,"classification":"Yorkshire_terrier","confidence":0.9987012147903442}
 
 ### Reporting endpoint
 

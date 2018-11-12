@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-import random
 
 from rest_framework import status
 from rest_framework.generics import CreateAPIView
@@ -18,10 +17,6 @@ class CreateClassification(CreateAPIView):
     def post(self, request):
         serializer = CreateClassificationSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.validated_data['image_url'] = (
-                serializer.validated_data['image_url'].
-                replace('cat', str(random.randint(0, 1000)))
-            )
             classification = classify_image(serializer.validated_data['image_url'])
             serializer.save(
                 result=classification['classification'],
