@@ -3,7 +3,7 @@ version: '3'
 services:
   api:
     container_name: classifier_api
-    build: .
+    build: ./api
     restart: always
     ports:
      - "8000:8000"
@@ -27,3 +27,12 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_ROOT_PASSWORD: password
+
+  web:
+    container_name: classifier_web
+    build: ./web
+    restart: always
+    ports:
+     - "80:80"
+    depends_on:
+      - api
