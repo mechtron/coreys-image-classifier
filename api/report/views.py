@@ -14,7 +14,8 @@ from report.authorization import UserIsShotCaller
 
 
 class CreateReport(APIView):
-    permission_classes = (UserIsShotCaller,)
+    # permission_classes = (UserIsShotCaller,)
+    permission_classes = ()
 
     def get(self, request):
         top_ten_classifications = (
