@@ -9,7 +9,7 @@ COPY requirements.txt /tmp/requirements.txt
 RUN pip3 install -r /tmp/requirements.txt
 
 RUN mkdir /api
-COPY ./api /api
+COPY . /api
 
 EXPOSE 8000
 
