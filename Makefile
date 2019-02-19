@@ -1,7 +1,7 @@
 docker:
 	docker-compose up -d --build
 
-docker-down:
+docker_down:
 	docker-compose down
 
 request:
@@ -12,3 +12,12 @@ db_create:
 
 db_migrate:
 	docker exec classifier_api python3 manage.py migrate
+
+helm_install:
+	helm install --name ml-engineer-project helm/ml-engineer-project
+
+helm_upgrade:
+	helm upgrade ml-engineer-project helm/ml-engineer-project
+
+helm_delete:
+	helm delete --purge ml-engineer-project

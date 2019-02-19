@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "ml-engineer-project.full_name" . }}
+  labels:
+    {{- include "ml-engineer-project.release_labels" . | indent 4 }}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        {{- include "ml-engineer-project.release_labels" . | indent 8 }}
+      annotations:
+        checksum/config-map: {{ include (print $.Chart.Name "/templates/config-map.yaml") . | sha256sum }}
+    spec:
+      containers:
+        - name: ml-engineer-project
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          env:
+            - name: MAGIC_NUMBER
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ template "ml-engineer-project.full_name" . }}
+                  key: magic-number

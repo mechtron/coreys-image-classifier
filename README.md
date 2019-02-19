@@ -13,6 +13,22 @@ By Corey Gale (coreygale@gmail.com / corey@gumgum.com)
 
     make db_migrate
 
+## Helm chart
+
+You can deploy to Kubernetes using the project's helm chart located in `helm/ml-engineer-project`.
+
+### First release
+
+    make helm_install
+
+### Deploy a new release
+
+    make helm_upgrade
+
+### Delete a release
+
+    make helm_delete
+
 ## Example request
 
     curl --request POST --header "Content-Type: application/json" --data '{"image_url":"https://s3.amazonaws.com/gumgum-interviews/ml-engineer/cat.jpg"}' http://localhost:8000/classify-image
