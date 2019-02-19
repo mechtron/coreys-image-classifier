@@ -17,7 +17,7 @@ import redis
 from requests import get
 
 
-REDIS_CLIENT = redis.StrictRedis(host='redis', port=6379)
+REDIS_CLIENT = redis.StrictRedis(host='classifier-dev-cache-master', port=6379)
 
 
 def download_image(image_url):

@@ -1,3 +1,4 @@
-db-data/
 __pycache__/
+db-data/
+helm/ml-engineer-project/charts/*
 node_modules/

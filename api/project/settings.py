@@ -83,8 +83,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'api',
         'USER': 'root',
-        'PASSWORD': 'password',
-        'HOST': 'db',
+        'PASSWORD': '',
+        'HOST': 'classifier-dev-db',
         'PORT': 3306,
     },
 }

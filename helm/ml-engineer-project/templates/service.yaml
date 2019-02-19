@@ -1,14 +1,31 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "ml-engineer-project.full_name" . }}
+  name: {{ template "classifier.full_name" . }}-api
   labels:
-    {{- include "ml-engineer-project.release_labels" . | indent 4 }}
+    {{- include "classifier.release_labels" . | indent 4 }}
 spec:
   type: NodePort
   ports:
-  - port: 8080
-    targetPort: 8080
+  - port: 8000
+    targetPort: 8000
     protocol: TCP
   selector:
-    app: {{ template "ml-engineer-project.full_name" . }}
+    app: {{ template "classifier.full_name" . }}-api
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "classifier.full_name" . }}-web
+  labels:
+    {{- include "classifier.release_labels" . | indent 4 }}
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+  selector:
+    app: {{ template "classifier.full_name" . }}-web

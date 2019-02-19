@@ -1,27 +1,47 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: {{ template "ml-engineer-project.full_name" . }}
+  name: {{ template "classifier.full_name" . }}-api
   labels:
-    {{- include "ml-engineer-project.release_labels" . | indent 4 }}
+    {{- include "classifier.release_labels" . | indent 4 }}
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        {{- include "ml-engineer-project.release_labels" . | indent 8 }}
+        {{- include "classifier.release_labels" . | indent 8 }}
       annotations:
         checksum/config-map: {{ include (print $.Chart.Name "/templates/config-map.yaml") . | sha256sum }}
     spec:
       containers:
-        - name: ml-engineer-project
-          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        - name: api
+          image: {{ .Values.api.image.repository }}:{{ .Values.api.image.tag }}
+          imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8080
+            - containerPort: 8000
               protocol: TCP
-          env:
-            - name: MAGIC_NUMBER
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ template "ml-engineer-project.full_name" . }}
-                  key: magic-number
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "classifier.full_name" . }}-web
+  labels:
+    {{- include "classifier.release_labels" . | indent 4 }}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        {{- include "classifier.release_labels" . | indent 8 }}
+      annotations:
+        checksum/config-map: {{ include (print $.Chart.Name "/templates/config-map.yaml") . | sha256sum }}
+    spec:
+      containers:
+        - name: web
+          image: {{ .Values.web.image.repository }}:{{ .Values.web.image.tag }}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              protocol: TCP

@@ -1,6 +1,9 @@
 docker:
 	docker-compose up -d --build
 
+docker_build_minikube:
+	sh minikube_docker.sh
+
 docker_down:
 	docker-compose down
 
@@ -14,10 +17,14 @@ db_migrate:
 	docker exec classifier_api python3 manage.py migrate
 
 helm_install:
-	helm install --name ml-engineer-project helm/ml-engineer-project
+	helm install --name classifier-dev helm/ml-engineer-project
 
 helm_upgrade:
-	helm upgrade ml-engineer-project helm/ml-engineer-project
+	helm upgrade classifier-dev helm/ml-engineer-project
 
 helm_delete:
-	helm delete --purge ml-engineer-project
+	helm delete --purge classifier-dev
+
+helm_deps:
+	helm repo add google https://kubernetes-charts.storage.googleapis.com
+	helm dependency update helm/ml-engineer-project
