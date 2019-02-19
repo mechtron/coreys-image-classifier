@@ -17,10 +17,10 @@ db_migrate:
 	docker exec classifier_api python3 manage.py migrate
 
 helm_install:
-	helm install --name classifier-dev helm/ml-engineer-project
+	helm install --name classifier-dev --namespace=classifier helm/ml-engineer-project
 
 helm_upgrade:
-	helm upgrade classifier-dev helm/ml-engineer-project
+	helm upgrade classifier-dev --namespace=classifier helm/ml-engineer-project
 
 helm_delete:
 	helm delete --purge classifier-dev
