@@ -1,8 +1,11 @@
 docker:
 	docker-compose up -d --build
 
-docker_build_minikube:
+minikube_docker_build:
 	sh minikube_docker.sh
+
+minikube_enable_ingress:
+	minikube addons enable ingress
 
 docker_down:
 	docker-compose down

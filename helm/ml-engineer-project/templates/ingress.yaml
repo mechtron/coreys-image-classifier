@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ template "api_name" . }}
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  backend:
+    serviceName: {{ template "api_name" . }}
+    servicePort: 8000
+  rules:
+  - http:
+      paths:
+      - path: /api
+        backend:
+          serviceName: {{ template "api_name" . }}
+          servicePort: 8000
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ template "web_name" . }}
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  backend:
+    serviceName: {{ template "web_name" . }}
+    servicePort: 80
+  rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          serviceName: {{ template "web_name" . }}
+          servicePort: 80
