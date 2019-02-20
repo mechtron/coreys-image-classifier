@@ -2,11 +2,13 @@ api:
   image:
     repository: classifier_api
     tag: 'latest'
+  serviceType: LoadBalancer
 
 web:
   image:
     repository: classifier_web
     tag: 'latest'
+  serviceType: LoadBalancer
 
 cache:
   cluster:

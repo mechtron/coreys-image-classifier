@@ -1,31 +1,29 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "classifier.full_name" . }}-api
+  name: {{ template "api_name" . }}
   labels:
-    {{- include "classifier.release_labels" . | indent 4 }}
+    {{- include "release_labels" . | indent 4 }}
 spec:
-  type: NodePort
+  type: {{ .Values.api.serviceType | default "NodePort" | quote }}
   ports:
   - port: 8000
     targetPort: 8000
     protocol: TCP
   selector:
-    app: {{ template "classifier.full_name" . }}-api
-
+    app: {{ template "api_name" . }}
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "classifier.full_name" . }}-web
+  name: {{ template "web_name" . }}
   labels:
-    {{- include "classifier.release_labels" . | indent 4 }}
+    {{- include "release_labels" . | indent 4 }}
 spec:
-  type: NodePort
+  type: {{ .Values.web.serviceType | default "NodePort" | quote }}
   ports:
   - port: 80
     targetPort: 80
     protocol: TCP
   selector:
-    app: {{ template "classifier.full_name" . }}-web
+    app: {{ template "web_name" . }}

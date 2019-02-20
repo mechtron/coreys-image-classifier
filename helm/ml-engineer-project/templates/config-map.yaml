@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ template "classifier.full_name" . }}
+  name: {{ template "name" . }}
   labels:
-    {{- include "classifier.release_labels" . | indent 4 }}
+    {{- include "release_labels" . | indent 4 }}
 data:
   magic-number: '13'

@@ -1,15 +1,15 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: {{ template "classifier.full_name" . }}-api
+  name: {{ template "api_name" . }}
   labels:
-    {{- include "classifier.release_labels" . | indent 4 }}
+    {{- include "release_labels" . | indent 4 }}
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        {{- include "classifier.release_labels" . | indent 8 }}
+        {{- include "release_labels" . | indent 8 }}
       annotations:
         checksum/config-map: {{ include (print $.Chart.Name "/templates/config-map.yaml") . | sha256sum }}
     spec:
@@ -20,21 +20,24 @@ spec:
           ports:
             - containerPort: 8000
               protocol: TCP
-
+          env:
+          - name: MYSQL_HOSTNAME
+            value: {{ template "db_name" . }}
+          - name: REDIS_HOSTNAME
+            value: {{ template "cache_name" . }}
 ---
-
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: {{ template "classifier.full_name" . }}-web
+  name: {{ template "web_name" . }}
   labels:
-    {{- include "classifier.release_labels" . | indent 4 }}
+    {{- include "release_labels" . | indent 4 }}
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        {{- include "classifier.release_labels" . | indent 8 }}
+        {{- include "release_labels" . | indent 8 }}
       annotations:
         checksum/config-map: {{ include (print $.Chart.Name "/templates/config-map.yaml") . | sha256sum }}
     spec:
