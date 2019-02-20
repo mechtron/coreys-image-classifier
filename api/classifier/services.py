@@ -13,11 +13,12 @@ from keras.applications import (
     imagenet_utils,
     mobilenet,
 )
+import os
 import redis
 from requests import get
 
 
-REDIS_CLIENT = redis.StrictRedis(host='classifier-dev-cache-master', port=6379)
+REDIS_CLIENT = redis.StrictRedis(host=os.environ['REDIS_HOSTNAME'], port=6379)
 
 
 def download_image(image_url):

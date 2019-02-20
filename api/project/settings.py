@@ -84,7 +84,7 @@ DATABASES = {
         'NAME': 'api',
         'USER': 'root',
         'PASSWORD': '',
-        'HOST': 'classifier-dev-db',
+        'HOST': os.environ['MYSQL_HOSTNAME'],
         'PORT': 3306,
     },
 }
@@ -135,4 +135,3 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     )
 }
-
