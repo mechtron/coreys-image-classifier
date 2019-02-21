@@ -23,6 +23,11 @@ spec:
           env:
           - name: MYSQL_HOSTNAME
             value: {{ template "db_name" . }}
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "db_name" . }}
+                key: mysql-password
           - name: REDIS_HOSTNAME
             value: {{ template "cache_name" . }}
 ---

@@ -5,4 +5,4 @@ metadata:
   labels:
     {{- include "release_labels" . | indent 4 }}
 data:
-  magic-number: '13'
+  magic-number: '14'

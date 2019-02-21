@@ -1,9 +1,7 @@
 dependencies:
 - name: redis
-  alias: cache
   repository: https://kubernetes-charts.storage.googleapis.com
   version: 6.1.0
 - name: mysql
-  alias: db
   repository: https://kubernetes-charts.storage.googleapis.com
   version: 0.15.0

@@ -4,6 +4,7 @@ metadata:
   name: {{ template "api_name" . }}
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    # nginx.ingress.kubernetes.io/ssl-redirect: \"false\"
 spec:
   backend:
     serviceName: {{ template "api_name" . }}
@@ -22,6 +23,7 @@ metadata:
   name: {{ template "web_name" . }}
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    # nginx.ingress.kubernetes.io/ssl-redirect: \"false\"
 spec:
   backend:
     serviceName: {{ template "web_name" . }}
