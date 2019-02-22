@@ -1,6 +1,7 @@
 mysql:
   mysqlDatabase: api
   mysqlUser: classifier
+  mysqlPassword: overridethis # use -set to override
 
 redis:
   cluster:

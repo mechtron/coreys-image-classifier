@@ -2,8 +2,8 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: {{ template "api_name" . }}
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+  # annotations:
+    # nginx.ingress.kubernetes.io/rewrite-target: /
     # nginx.ingress.kubernetes.io/ssl-redirect: \"false\"
 spec:
   backend:
@@ -21,8 +21,8 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: {{ template "web_name" . }}
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+  # annotations:
+    # nginx.ingress.kubernetes.io/rewrite-target: /
     # nginx.ingress.kubernetes.io/ssl-redirect: \"false\"
 spec:
   backend:
@@ -31,7 +31,7 @@ spec:
   rules:
   - http:
       paths:
-      - path: /
+      - path: /web
         backend:
           serviceName: {{ template "web_name" . }}
           servicePort: 80
