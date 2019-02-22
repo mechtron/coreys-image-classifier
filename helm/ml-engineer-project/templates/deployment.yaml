@@ -23,6 +23,8 @@ spec:
           env:
           - name: MYSQL_HOSTNAME
             value: {{ template "db_name" . }}
+          - name: MYSQL_USERNAME
+            value: {{ .Values.mysql.mysqlUser }}
           - name: MYSQL_PASSWORD
             valueFrom:
               secretKeyRef:
