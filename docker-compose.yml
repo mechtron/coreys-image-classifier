@@ -9,15 +9,20 @@ services:
      - "8000:8000"
     volumes:
      - ./api:/api
+    environment:
+      MYSQL_HOSTNAME: mysql
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: password
+      REDIS_HOSTNAME: redis
     depends_on:
-      - db
+      - mysql
       - redis
 
   redis:
     container_name: classifier_cache
     image: "redis:alpine"
 
-  db:
+  mysql:
     container_name: classifier_db
     image: mysql
     ports:
