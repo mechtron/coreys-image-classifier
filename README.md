@@ -3,7 +3,7 @@ By Corey Gale (coreygale@gmail.com / corey@gumgum.com)
 
 ## Create Docker environment
 
-    make docker
+    make docker_up
 
 ### Create the API's database for the first time
 

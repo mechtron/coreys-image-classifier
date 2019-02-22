@@ -1,11 +1,5 @@
-docker:
+docker_up:
 	docker-compose up -d --build
-
-minikube_docker_build:
-	sh minikube_docker.sh
-
-minikube_enable_ingress:
-	minikube addons enable ingress
 
 docker_down:
 	docker-compose down
@@ -18,6 +12,12 @@ db_create:
 
 db_migrate:
 	docker exec classifier_api python3 manage.py migrate
+
+minikube_docker_build:
+	sh minikube_docker.sh
+
+minikube_enable_ingress:
+	minikube addons enable ingress
 
 helm_install:
 	helm install --name classifier-dev --namespace=classifier helm/ml-engineer-project
