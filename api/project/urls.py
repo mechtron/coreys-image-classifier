@@ -20,6 +20,7 @@ from django.conf.urls import (
 from django.contrib import admin
 
 from classifier.views import CreateClassification
+from healthcheck.views import HealthCheck
 from report.views import CreateReport
 from secret.views import Secret
 
@@ -33,6 +34,7 @@ urlpatterns = [
         CreateClassification.as_view(),
         name='classify-image',
     ),
+    url(r'^health', HealthCheck.as_view(), name='healthcheck'),
     url(r'^report', CreateReport.as_view(), name='report'),
     url(r'^secret', Secret.as_view(), name='secret'),
 ]
