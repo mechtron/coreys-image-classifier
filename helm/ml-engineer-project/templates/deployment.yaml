@@ -32,6 +32,21 @@ spec:
                 key: mysql-password
           - name: REDIS_HOSTNAME
             value: {{ template "cache_name" . }}
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 2
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 30
+            timeoutSeconds: 5
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -55,3 +70,18 @@ spec:
           ports:
             - containerPort: 80
               protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 2
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 10
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 2
+            periodSeconds: 30
+            timeoutSeconds: 5
