@@ -14,7 +14,7 @@ COPY . /api
 EXPOSE 8000
 
 ENV PYTHONUNBUFFERED=1
+ENV API_VESRION="v1.0"
 
 WORKDIR /api
 CMD python3 manage.py runserver 0.0.0.0:8000
-
