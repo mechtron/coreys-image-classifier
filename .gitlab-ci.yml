@@ -4,13 +4,12 @@ services:
   - docker:dind
 
 variables:
-  CI_REGISTRY: docker.io
   API_IMAGE: mechtron/coreys-image-classifier-api
   WEB_IMAGE: mechtron/coreys-image-classifier-web
 
 before_script:
   - apk add --no-cache make
-  - docker login -u "$DOCKER_REGISTRY_USER" -p "$DOCKER_REGISTRY_PASSWORD" $CI_REGISTRY
+  - docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
 
 stages:
   - build
