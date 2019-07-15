@@ -4,6 +4,9 @@ docker_up:
 docker_down:
 	docker-compose down
 
+docker_image:
+	sh ./scripts/docker_build.sh
+
 request:
 	curl --request POST --header "Content-Type: application/json" --data '{"image_url":"https://s3.amazonaws.com/gumgum-interviews/ml-engineer/cat.jpg"}' http://localhost:8000/classify-image
 
