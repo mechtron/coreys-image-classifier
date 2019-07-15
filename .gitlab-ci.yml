@@ -23,13 +23,13 @@ build_docker_image_api:
     changes:
       - api/*
 
-# build_docker_image_web:
-#   stage: build
-#   script:
-#     - IMAGE_NAME=$WEB_IMAGE VERSION_TAG=$CI_COMMIT_TAG make docker_image
-#   only:
-#     changes:
-#       - web/*
+build_docker_image_web:
+  stage: build
+  script:
+    - APP_DIR=web IMAGE_NAME=$WEB_IMAGE COMMIT_TAG=$CI_COMMIT_TAG make docker_image
+  only:
+    changes:
+      - web/*
 
 # deploy_terraform_stage:
 #   stage: deploy

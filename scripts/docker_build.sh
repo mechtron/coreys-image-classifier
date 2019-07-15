@@ -7,8 +7,6 @@ else
    IMAGE_TAG=$(echo $COMMIT_TAG | cut -d "_" -f2)
 fi
 echo "Docker image tag is $IMAGE_TAG"
-pwd
-echo "App dir is $APP_DIR"
 cd $APP_DIR
 docker build --pull -t "$IMAGE_NAME:$IMAGE_TAG" .
 docker push "$IMAGE_NAME"
