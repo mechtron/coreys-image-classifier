@@ -10,12 +10,12 @@ redis:
 
 api:
   image:
-    repository: classifier_api
+    repository: mechtron/coreys-image-classifier-api
     tag: latest
   serviceType: LoadBalancer
 
 web:
   image:
-    repository: classifier_web
+    repository: mechtron/coreys-image-classifier-web
     tag: latest
   serviceType: LoadBalancer
