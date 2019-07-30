@@ -1,0 +1,45 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-dev
+  namespace: http-app
+  labels:
+    app: nginx-dev
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v1
+      kind: Mapping
+      name: nginx_dev_mapping
+      host: nginx-dev.ambassador.dev.sandbox.ggops.com
+      prefix: /
+      service: nginx-dev.http-app:80
+      timeout_ms: 3000
+spec:
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  selector:
+    app: nginx-dev
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-dev
+  namespace: http-app
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: nginx-dev
+    spec:
+      containers:
+      - name: nginx-dev
+        image: nginx:1.9.1
+        ports:
+        - containerPort: 80
