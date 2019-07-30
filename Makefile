@@ -22,11 +22,8 @@ minikube_docker_build:
 minikube_enable_ingress:
 	minikube addons enable ingress
 
-helm_install:
-	helm install --name classifier-dev --namespace=classifier helm/ml-engineer-project
-
-helm_upgrade:
-	helm upgrade classifier-dev --namespace=classifier helm/ml-engineer-project
+helm_upgrade_install:
+	helm upgrade --install classifier-dev --namespace=classifier helm/ml-engineer-project
 
 helm_delete:
 	helm delete --purge classifier-dev
