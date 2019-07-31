@@ -2,13 +2,13 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: dev
+  name: prod
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: nginx
-  namespace: dev
+  namespace: prod
   labels:
     app: nginx
   annotations:
@@ -16,10 +16,10 @@ metadata:
       ---
       apiVersion: ambassador/v1
       kind: Mapping
-      name: nginx_dev_mapping
+      name: nginx_prod_mapping
       host: k8s.dev.sandbox.ggops.com
-      prefix: /
-      service: nginx.dev:80
+      prefix: /prod/
+      service: nginx.prod:80
       timeout_ms: 3000
 spec:
   ports:
@@ -33,7 +33,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: nginx
-  namespace: dev
+  namespace: prod
 spec:
   replicas: 1
   strategy:
