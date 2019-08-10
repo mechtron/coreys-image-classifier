@@ -17,7 +17,7 @@ metadata:
       apiVersion: ambassador/v1
       kind: Mapping
       name: nginx_prod_mapping
-      host: k8s.dev.sandbox.ggops.com
+      host: k8s.prod.sandbox.ggops.com
       prefix: /
       service: nginx.prod:80
       timeout_ms: 3000
