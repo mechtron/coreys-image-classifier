@@ -18,7 +18,7 @@ metadata:
       kind: Mapping
       name: nginx_dev_mapping
       host: k8s.dev.sandbox.ggops.com
-      prefix: /
+      prefix: /dev/
       service: nginx.dev:80
       timeout_ms: 3000
 spec:
@@ -44,7 +44,33 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.9.1
-        ports:
-        - containerPort: 80
+        - name: nginx
+          image: nginx:1.9.1
+          ports:
+          - containerPort: 80
+          volumeMounts:
+            - name: nginx-config
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: nginx-config
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+  namespace: dev
+data:
+  nginx.conf: |
+    events {}
+    http {
+      server {
+        listen 80;
+        location / {
+          return 200 'welcome to dev';
+          add_header Content-Type text/plain;
+        }
+      }
+    }

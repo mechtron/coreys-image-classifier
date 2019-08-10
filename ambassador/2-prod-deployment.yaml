@@ -18,7 +18,7 @@ metadata:
       kind: Mapping
       name: nginx_prod_mapping
       host: k8s.dev.sandbox.ggops.com
-      prefix: /prod/
+      prefix: /
       service: nginx.prod:80
       timeout_ms: 3000
 spec:
@@ -48,3 +48,49 @@ spec:
         image: nginx:1.9.1
         ports:
         - containerPort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx
+  namespace: prod
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.9.1
+          ports:
+          - containerPort: 80
+          volumeMounts:
+            - name: nginx-config
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: nginx-config
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+  namespace: prod
+data:
+  nginx.conf: |
+    events {}
+    http {
+      server {
+        listen 80;
+        location / {
+          return 200 'welcome to prod!';
+          add_header Content-Type text/plain;
+        }
+      }
+    }
