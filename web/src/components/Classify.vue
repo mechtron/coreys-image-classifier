@@ -81,7 +81,7 @@ export default {
       evt.preventDefault();
       axios({
         method: 'post',
-        url: 'http://localhost:8000/classify-image',
+        url: '../../api/classify-image',
         headers: {
             'Access-Control-Allow-Origin': '*',
         },
