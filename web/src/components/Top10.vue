@@ -31,7 +31,7 @@ export default {
     }
   },
   mounted() {
-    axios.get('http://localhost:8000/report')
+    axios.get('../api/report')
     .then((response) => {
       console.log(response.data);
       this.fields = response.data;

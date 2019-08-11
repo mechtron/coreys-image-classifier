@@ -3,6 +3,6 @@
     <h2>
       About
     </h2>
-    <img src="../assets/logo.png" alt="vuejs logo">
+    <img src="../dist/logo.png" alt="vuejs logo">
   </div>
 </template>
