@@ -2,6 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: {{ template "api_name" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "release_labels" . | indent 4 }}
 spec:
@@ -9,6 +10,7 @@ spec:
   template:
     metadata:
       labels:
+        name: {{ template "api_name" . }}
         {{- include "release_labels" . | indent 8 }}
       annotations:
         checksum/config-map: {{ include (print $.Chart.Name "/templates/config-map.yaml") . | sha256sum }}
@@ -52,6 +54,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: {{ template "web_name" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "release_labels" . | indent 4 }}
 spec:
@@ -59,6 +62,7 @@ spec:
   template:
     metadata:
       labels:
+        name: {{ template "web_name" . }}
         {{- include "release_labels" . | indent 8 }}
       annotations:
         checksum/config-map: {{ include (print $.Chart.Name "/templates/config-map.yaml") . | sha256sum }}

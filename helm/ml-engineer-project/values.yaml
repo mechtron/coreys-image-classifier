@@ -1,3 +1,5 @@
+app_hostname: classifier.k8s.dev.sandbox.ggops.com
+
 mysql:
   mysqlDatabase: api
   mysqlUser: classifier
@@ -17,5 +19,5 @@ api:
 web:
   image:
     repository: mechtron/coreys-image-classifier-web
-    tag: v1.0
+    tag: v1.1
   serviceType: LoadBalancer
