@@ -1,5 +1,5 @@
 # ml-engineer-project
-By Corey Gale (coreygale@gmail.com / corey@gumgum.com)
+By Corey Gale
 
 ## Create Docker environment
 

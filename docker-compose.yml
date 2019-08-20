@@ -35,7 +35,10 @@ services:
 
   web:
     container_name: classifier_web
-    build: ./web
+    build:
+      context: ./web
+      args:
+        DEV_ENV: "true"
     restart: always
     ports:
      - "80:80"
