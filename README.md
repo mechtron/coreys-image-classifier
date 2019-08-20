@@ -1,9 +1,9 @@
 # ml-engineer-project
-By Corey Gale (coreygale@gmail.com / corey@gumgum.com)
+By Corey Gale
 
 ## Create Docker environment
 
-    make docker
+    make docker_up
 
 ### Create the API's database for the first time
 
@@ -12,6 +12,22 @@ By Corey Gale (coreygale@gmail.com / corey@gumgum.com)
 ### Migrate the API's database
 
     make db_migrate
+
+## Helm chart
+
+You can deploy to Kubernetes using the project's helm chart located in `helm/ml-engineer-project`.
+
+### First release
+
+    make helm_install
+
+### Deploy a new release
+
+    make helm_upgrade
+
+### Delete a release
+
+    make helm_delete
 
 ## Example request
 
