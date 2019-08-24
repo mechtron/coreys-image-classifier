@@ -1,4 +1,4 @@
-app_hostname: classifier.k8s.dev.sandbox.ggops.com
+app_hostname: classifier.k8s.prod.sandbox.ggops.com
 
 mysql:
   mysqlDatabase: api

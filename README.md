@@ -1,6 +1,10 @@
 # ml-engineer-project
 By Corey Gale
 
+## Production environment
+
+    https://classifier.k8s.prod.sandbox.ggops.com
+
 ## Create Docker environment
 
     make docker_up
