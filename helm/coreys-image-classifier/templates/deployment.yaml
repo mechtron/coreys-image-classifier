@@ -23,6 +23,11 @@ spec:
             - containerPort: 8000
               protocol: TCP
           env:
+          - name: SECRET_KEY
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "api_name" . }}-secret
+                key: app-secret
           - name: MYSQL_HOSTNAME
             value: {{ template "db_name" . }}
           - name: MYSQL_USERNAME

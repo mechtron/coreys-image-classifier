@@ -1,4 +1,4 @@
 __pycache__/
 db-data/
-helm/ml-engineer-project/charts/*
+helm/coreys-image-classifier/charts/*
 node_modules/

@@ -14,6 +14,7 @@ services:
       MYSQL_USERNAME: root
       MYSQL_PASSWORD: password
       REDIS_HOSTNAME: redis
+      SECRET_KEY: s3cr3t
     depends_on:
       - mysql
       - redis

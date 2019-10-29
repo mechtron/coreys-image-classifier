@@ -63,7 +63,7 @@ export default {
   data () {
     return {
       form: {
-        image_url: 'https://s3.amazonaws.com/gumgum-interviews/ml-engineer/cat.jpg',
+        image_url: 'https://coreys-image-classifier-example-images.s3.amazonaws.com/ninja.png',
       },
       classification: null,
       confidence: null,

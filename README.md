@@ -1,5 +1,6 @@
-# ml-engineer-project
-By Corey Gale
+# coreys-image-classifier
+
+By Corey Gale (`mechtrondev[at]gmail.com`)
 
 ## Production environment
 
@@ -19,15 +20,15 @@ By Corey Gale
 
 ## Helm chart
 
-You can deploy to Kubernetes using the project's helm chart located in `helm/ml-engineer-project`.
+You can deploy to Kubernetes using the project's helm chart located in `helm/coreys-image-classifier`.
 
 ### First release
 
-    make helm_install
+    make helm_deps && make helm_upgrade_install
 
 ### Deploy a new release
 
-    make helm_upgrade
+    make helm_upgrade_install
 
 ### Delete a release
 
@@ -35,41 +36,41 @@ You can deploy to Kubernetes using the project's helm chart located in `helm/ml-
 
 ## Example request
 
-    curl --request POST --header "Content-Type: application/json" --data '{"image_url":"https://s3.amazonaws.com/gumgum-interviews/ml-engineer/cat.jpg"}' http://localhost:8000/classify-image
+    curl --request POST --header "Content-Type: application/json" --data '{"image_url":"https://coreys-image-classifier-example-images.s3.amazonaws.com/ninja.png"}' http://localhost:8000/classify-image
 
 Or simply: `make request`
 
 Response:
 
-    {"processing_time":6.076243,"classification":"tabby","confidence":0.5540751218795776}
+    {"processing_time":6.076243,"classification":"Yorkshire_terrier","confidence":0.9685871601104736}
 
 #### Image test: apple
 
-    curl --request POST --header "Content-Type: application/json" --data '{"image_url":"https://i.imgur.com/UBNYRsZ.jpg"}' http://localhost:8000/classify-image
+    curl --request POST --header "Content-Type: application/json" --data '{"image_url":"https://coreys-image-classifier-example-images.s3.amazonaws.com/apple.jpg"}' http://localhost:8000/classify-image
 
 Response:
 
     {"processing_time":5.160117,"classification":"Granny_Smith","confidence":0.9807039499282837}
 
-#### Image test: yorkie
+#### Image test: cat
 
-    curl --request POST --header "Content-Type: application/json" --data '{"image_url":"https://i.imgur.com/y8BzuvG.jpg"}' http://localhost:8000/classify-image
+    curl --request POST --header "Content-Type: application/json" --data '{"image_url":"https://coreys-image-classifier-example-images.s3.amazonaws.com/cat.jpg"}' http://localhost:8000/classify-image
 
 Response:
 
-    {"processing_time":5.143928,"classification":"Yorkshire_terrier","confidence":0.9987012147903442}
+    {"processing_time":5.143928,"classification":"tabby","confidence":0.5540751218795776}
 
 ### Reporting endpoint
 
 Note: only authorized usernames (`admin` and `corey`) can access this endpoint.
 
-    curl --request GET --header 'Authorization: Token 2cc009873ddf3c49ff0000fb6b77a87782a73b8f' http://localhost:8000/report
+    curl --request GET --header 'Authorization: Token <AUTH_TOKEN_HERE>' http://localhost:8000/report
 
 Response (truncated response for a dataset of `n=20000` random classifications):
 
     [
         {
-            "image_url":"https://s3.amazonaws.com/gumgum-interviews/ml-engineer/162.jpg",
+            "image_url":"https://example.com/162.jpg",
             "classification_count":35,
             "processing_time_avg":6.79950286,
             "processing_time_max":9.7266,
@@ -82,7 +83,7 @@ Response (truncated response for a dataset of `n=20000` random classifications):
 
 Note: only authenticated users can access this endpoint.
 
-    curl --request GET --header 'Authorization: Token 2cc009873ddf3c49ff0000fb6b77a87782a73b8f' http://localhost:8000/secret
+    curl --request GET --header 'Authorization: Token <AUTH_TOKEN_HERE>' http://localhost:8000/secret
 
 Response: `Hi corey`
 
@@ -106,13 +107,13 @@ Response:
 
 ##### Logout
 
-    curl --request POST --header 'Authorization: Token efe3b535b5a62588a8279360660a7201bf59acad' http://localhost:8000/auth/token/logout/
+    curl --request POST --header 'Authorization: Token <AUTH_TOKEN_HERE>' http://localhost:8000/auth/token/logout/
 
 Response: `204`
 
 ##### Make authenticated request
 
-    curl --request GET --header 'Authorization: Token efe3b535b5a62588a8279360660a7201bf59acad' http://localhost:8000/auth/users/me/
+    curl --request GET --header 'Authorization: Token <AUTH_TOKEN_HERE>' http://localhost:8000/auth/users/me/
 
 Response:
 
@@ -120,6 +121,21 @@ Response:
 
 ##### Change password
 
-    curl --request POST --header 'Authorization: Token efe3b535b5a62588a8279360660a7201bf59acad' --header "Content-Type: application/json" --data '{"current_password": "abc123", "new_password": "xyz123"}' http://localhost:8000/auth/password/
+    curl --request POST --header 'Authorization: Token <AUTH_TOKEN_HERE>' --header "Content-Type: application/json" --data '{"current_password": "abc123", "new_password": "xyz123"}' http://localhost:8000/auth/password/
 
 Response: `204`
+
+### Build and tag Docker images
+
+##### API
+
+    APP_DIR=api IMAGE_NAME=mechtron/coreys-image-classifier-api COMMIT_TAG=API_v1.0 make docker_image
+
+##### Web
+
+    APP_DIR=web IMAGE_NAME=mechtron/coreys-image-classifier-web COMMIT_TAG=Web_v1.2 make docker_image
+
+### To do
+
+- Add GitHub Actions deployment pipeline
+- Add Prometheus metrics & Grafana dashboard

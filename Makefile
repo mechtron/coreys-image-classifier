@@ -8,7 +8,7 @@ docker_image:
 	sh ./scripts/docker_build.sh
 
 request:
-	curl --request POST --header "Content-Type: application/json" --data '{"image_url":"https://s3.amazonaws.com/gumgum-interviews/ml-engineer/cat.jpg"}' http://localhost:8000/classify-image
+	curl --request POST --header "Content-Type: application/json" --data '{"image_url":"https://coreys-image-classifier-example-images.s3.amazonaws.com/ninja.png"}' http://localhost:8000/classify-image
 
 db_create:
 	docker exec classifier_db mysql -ppassword -e 'CREATE DATABASE IF NOT EXISTS api;'
@@ -23,11 +23,11 @@ minikube_enable_ingress:
 	minikube addons enable ingress
 
 helm_upgrade_install:
-	helm upgrade --install classifier-dev --namespace=classifier helm/ml-engineer-project
+	helm upgrade --install classifier --namespace=classifier helm/coreys-image-classifier
 
 helm_delete:
-	helm delete --purge classifier-dev
+	helm delete --purge classifier
 
 helm_deps:
 	helm repo add google https://kubernetes-charts.storage.googleapis.com
-	helm dependency update helm/ml-engineer-project
+	helm dependency update helm/coreys-image-classifier

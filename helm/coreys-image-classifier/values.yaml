@@ -3,7 +3,7 @@ app_hostname: classifier.k8s.prod.sandbox.ggops.com
 mysql:
   mysqlDatabase: api
   mysqlUser: classifier
-  mysqlPassword: overridethis # use -set to override
+  mysqlPassword: dbpassw0rd # use -set to override
 
 redis:
   cluster:
@@ -15,6 +15,7 @@ api:
     repository: mechtron/coreys-image-classifier-api
     tag: v1.0
   serviceType: LoadBalancer
+  apiSecret: apis3r3t # use -set to override
 
 web:
   image:
