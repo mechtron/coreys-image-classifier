@@ -129,11 +129,11 @@ Response: `204`
 
 ##### API
 
-    APP_DIR=api IMAGE_NAME=mechtron/coreys-image-classifier-api COMMIT_TAG=API_v1.0 make docker_image
+    APP_DIR=api IMAGE_NAME=mechtron/coreys-image-classifier-api COMMIT_TAG=API_v1.1 make docker_image
 
 ##### Web
 
-    APP_DIR=web IMAGE_NAME=mechtron/coreys-image-classifier-web COMMIT_TAG=Web_v1.2 make docker_image
+    APP_DIR=web IMAGE_NAME=mechtron/coreys-image-classifier-web COMMIT_TAG=Web_v1.3 make docker_image
 
 ### To do
 

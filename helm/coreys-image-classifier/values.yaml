@@ -13,12 +13,12 @@ redis:
 api:
   image:
     repository: mechtron/coreys-image-classifier-api
-    tag: v1.0
+    tag: v1.1
   serviceType: LoadBalancer
   apiSecret: apis3r3t # use -set to override
 
 web:
   image:
     repository: mechtron/coreys-image-classifier-web
-    tag: v1.2
+    tag: v1.3
   serviceType: LoadBalancer
