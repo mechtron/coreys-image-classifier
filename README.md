@@ -30,6 +30,12 @@ You can deploy to Kubernetes using the project's helm chart located in `helm/cor
 
     make helm_upgrade_install
 
+### Deploy a new release securely
+
+This target should be used when deploying an environment that is exposed to the Internet. It expects the environment variables `API_SECRET` and `MYSQL_PASSWORD` to be defined (these values should be injected by your CI pipeline or secrets manager).
+
+    make helm_upgrade_install_secure
+
 ### Delete a release
 
     make helm_delete
