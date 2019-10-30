@@ -4,7 +4,44 @@ By Corey Gale (`mechtrondev[at]gmail.com`)
 
 ## Production environment
 
-    https://classifier.k8s.prod.sandbox.ggops.com
+[Try it out!](https://classifier.k8s.prod.sandbox.ggops.com)
+
+## Features
+
+- Classification of 1000 different objects
+- API with user management
+- SPA-style web client
+- Top 10 classifications page
+- Classification caching
+
+## Tech stack
+
+### Frontend
+
+- [Bootstrap](https://getbootstrap.com)
+- [VueJS](https://vuejs.org)
+
+### Backend
+
+- [Python](https://www.python.org)
+- [Django REST Framework](https://www.django-rest-framework.org)
+- [Djoser](https://github.com/sunscrapers/djoser)
+- [TensorFlow](https://www.tensorflow.org)
+- [Keras](https://keras.io)
+- [ImageNet](http://www.image-net.org)
+- [MySQL](https://www.mysql.com)
+- [Redis](https://redis.io)
+
+### DevOps
+
+- [Docker](https://www.docker.com)
+- [Kubernetes](https://kubernetes.io)
+- [EKS](https://aws.amazon.com/eks/)
+- [Helm](https://helm.sh)
+- [Ambassador](https://www.getambassador.io)
+- [Envoy](https://www.envoyproxy.io)
+
+[Stack visualized](https://classifier.k8s.prod.sandbox.ggops.com/#/about)
 
 ## Create Docker environment
 
