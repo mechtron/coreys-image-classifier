@@ -31,3 +31,29 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: mechtron/coreys-image-classifier-web
         tag_with_ref: true
+    - name: Deploy Helm chart to EKS
+      uses: mechtron/github-actions-ek8s-toolbox@2.0.0
+      env:
+        API_SECRET: ${{ secrets.API_SECRET }}
+        MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+      with:
+        awsAccessKeyId: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        awsSecretAccessKey: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        awsDefaultRegion: 'us-east-1'
+        eksClusterName: ${{ secrets.EKS_CLUSTER_NAME }}
+        helmVersion: '3.3.0'
+        helmfileVersion: '0.125.7'
+        kubectlVersion: '1.18.8'
+        istioctlVersion: '1.5.9'
+        kubevalVersion: '0.15.0'
+        command: |
+          helm repo add google https://kubernetes-charts.storage.googleapis.com
+          helm repo add bitnami https://charts.bitnami.com/bitnami
+          helm dependency update helm/coreys-image-classifier
+          helm upgrade \
+            --install classifier \
+            --namespace=classifier \
+            --create-namespace \
+            helm/coreys-image-classifier \
+            --set api.apiSecret=$API_SECRET \
+            --set mysql.mysqlPassword=$MYSQL_PASSWORD

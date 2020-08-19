@@ -23,7 +23,7 @@ minikube_enable_ingress:
 	minikube addons enable ingress
 
 helm_upgrade_install:
-	helm upgrade --install classifier --namespace=classifier helm/coreys-image-classifier
+	helm upgrade --install classifier --namespace=classifier --create-namespace helm/coreys-image-classifier
 
 helm_upgrade_install_secure:
 ifeq ($(API_SECRET),)
@@ -32,11 +32,12 @@ endif
 ifeq ($(MYSQL_PASSWORD),)
 	@echo MYSQL_PASSWORD must be set
 endif
-	helm upgrade --install classifier --namespace=classifier helm/coreys-image-classifier --set api.apiSecret=$(API_SECRET) --set mysql.mysqlPassword=$(MYSQL_PASSWORD)
+	helm upgrade --install classifier --namespace=classifier --create-namespace helm/coreys-image-classifier --set api.apiSecret=$(API_SECRET) --set mysql.mysqlPassword=$(MYSQL_PASSWORD)
 
 helm_delete:
 	helm delete --purge classifier
 
 helm_deps:
 	helm repo add google https://kubernetes-charts.storage.googleapis.com
+	helm repo add bitnami https://charts.bitnami.com/bitnami
 	helm dependency update helm/coreys-image-classifier

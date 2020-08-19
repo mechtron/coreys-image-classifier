@@ -4,7 +4,7 @@ By Corey Gale (`mechtrondev[at]gmail.com`)
 
 ## Production environment
 
-[Try it out!](https://classifier.k8s.prod.sandbox.ggops.com)
+[Try it out!](https://cic.k8s.sandbox.ggops.com)
 
 ## Features
 
@@ -41,7 +41,7 @@ By Corey Gale (`mechtrondev[at]gmail.com`)
 - [Ambassador](https://www.getambassador.io)
 - [Envoy](https://www.envoyproxy.io)
 
-[Stack visualized](https://classifier.k8s.prod.sandbox.ggops.com/#/about)
+[Stack visualized](https://cic.k8s.sandbox.ggops.com/#/about)
 
 ## Create Docker environment
 
@@ -168,7 +168,7 @@ Response:
 
 Response: `204`
 
-### Build and tag Docker images
+### Manually build and tag Docker images
 
 ##### API
 
@@ -180,5 +180,4 @@ Response: `204`
 
 ### To do
 
-- Add GitHub Actions deployment pipeline
 - Add Prometheus metrics & Grafana dashboard
