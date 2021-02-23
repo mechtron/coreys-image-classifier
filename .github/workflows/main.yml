@@ -101,7 +101,7 @@ jobs:
             --set envName=${{ steps.prep_deploy.outputs.env_name }} \
             --set hostname=${{ steps.prep_deploy.outputs.hostname }} \
             --set api.apiSecret=${{ steps.prep_deploy.outputs.api_secret }} \
-            --set mysql.mysqlPassword=${{ steps.prep_deploy.outputs.mysql_password }} \
+            --set mysql.mysqlPassword=${{ steps.prep_deploy.outputs.mysql_password }}
           if [[ ${{ steps.prep_deploy.outputs.env_name }} != "cic-prod" ]]
           then
             kubectl annotate namespace ${{ steps.prep_deploy.outputs.env_name }} janitor/expires=`date --utc -d "7 days" +%Y-%m-%dT%H:%M:%SZ` --overwrite=true
