@@ -1,4 +1,5 @@
 __pycache__/
+api/venv/
 db-data/
 helm/coreys-image-classifier/charts/*
 node_modules/
