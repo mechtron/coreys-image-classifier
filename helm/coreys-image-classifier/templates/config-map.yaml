@@ -3,6 +3,6 @@ kind: ConfigMap
 metadata:
   name: {{ template "name" . }}
   labels:
-    {{- include "release_labels" . | indent 4 }}
+    {{- include "releaseLabels" . | indent 4 }}
 data:
   magic-number: '1'

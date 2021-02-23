@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "api_name" . }}
+  name: {{ template "apiName" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "release_labels" . | indent 4 }}
+    {{- include "releaseLabels" . | indent 4 }}
   annotations:
     getambassador.io/config: |
       ---
@@ -13,7 +13,7 @@ metadata:
       name: api_mapping_{{ .Values.name }}
       host: {{ .Values.app_hostname }}
       prefix: /api/
-      service: {{ template "api_name" . }}.{{ .Release.Namespace }}:8000
+      service: {{ template "apiName" . }}.{{ .Release.Namespace }}:8000
       timeout_ms: 10000
       connect_timeout_ms: 30000
 spec:
@@ -23,15 +23,15 @@ spec:
     targetPort: 8000
     protocol: TCP
   selector:
-    name: {{ template "api_name" . }}
+    name: {{ template "apiName" . }}
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "web_name" . }}
+  name: {{ template "webName" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "release_labels" . | indent 4 }}
+    {{- include "releaseLabels" . | indent 4 }}
   annotations:
     getambassador.io/config: |
       ---
@@ -40,7 +40,7 @@ metadata:
       name: web_mapping_{{ .Values.name }}
       host: {{ .Values.app_hostname }}
       prefix: /
-      service: {{ template "web_name" . }}.{{ .Release.Namespace }}:80
+      service: {{ template "webName" . }}.{{ .Release.Namespace }}:80
       timeout_ms: 10000
       connect_timeout_ms: 30000
 spec:
@@ -50,4 +50,4 @@ spec:
     targetPort: 80
     protocol: TCP
   selector:
-    name: {{ template "web_name" . }}
+    name: {{ template "webName" . }}

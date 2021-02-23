@@ -3,7 +3,7 @@ kind: Job
 metadata:
   name: "{{.Release.Name}}-db-migrations"
   labels:
-    {{- include "release_labels" . | indent 8 }}
+    {{- include "releaseLabels" . | indent 8 }}
   annotations:
     "helm.sh/hook": post-install,post-upgrade
     "helm.sh/hook-weight": "5"
@@ -22,19 +22,19 @@ spec:
         - name: SECRET_KEY
           valueFrom:
             secretKeyRef:
-              name: {{ template "api_name" . }}-secret
+              name: {{ template "apiName" . }}-secret
               key: app-secret
         - name: MYSQL_HOSTNAME
-          value: {{ template "db_name" . }}
+          value: {{ template "dbName" . }}
         - name: MYSQL_USERNAME
           value: {{ .Values.mysql.mysqlUser }}
         - name: MYSQL_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: {{ template "db_name" . }}-password
+              name: {{ template "dbName" . }}-password
               key: mysql-password
         - name: REDIS_HOSTNAME
-          value: {{ template "cache_name" . }}
+          value: {{ template "cacheName" . }}
         command:
          - "python3"
          - "manage.py"
