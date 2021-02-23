@@ -1,4 +1,5 @@
-app_hostname: cic.k8s.sandbox.ggops.com
+envName: prod
+hostname: cic.k8s.sandbox.ggops.com
 
 mysql:
   mysqlDatabase: api
